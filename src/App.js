@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
-import Directory from "./components/directory/directory.component";
+import { Routes, Route } from "react-router-dom";
+
+import Home from "./routes/home/home.component.jsx";
+import Navigation from "./routes/navigation/navigation.component.jsx";
 
 const App = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetch("/categories.json")
-      .then((response) => response.json())
-      .then((data) => setData(data));
-  }, []);
-
-  return <Directory categories={data} />;
+  return (
+    <Routes>
+      <Route path="/" element={<Navigation />}>
+        <Route path="/home" element={<Home />} />
+      </Route>
+    </Routes>
+  );
 };
 
 export default App;

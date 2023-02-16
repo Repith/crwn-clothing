@@ -13,7 +13,6 @@ const CategoryItem = ({ category }) => {
         <h2>{title.toUpperCase()}</h2>
         <p>Shop now</p>
       </div>
-      s
     </div>
   );
 };
