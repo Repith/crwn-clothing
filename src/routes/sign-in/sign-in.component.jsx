@@ -10,6 +10,7 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 import SignUpForm from "../../components/sing-up-form/sing-up-form.component";
+// import SignInForm from "../../components/sign-in-form/sign-in-form.component";
 
 const SignIn = () => {
   // useEffect(async () => {
@@ -31,7 +32,10 @@ const SignIn = () => {
       <Button buttonType="google" onClick={logGoogleUser}>
         Sign in with Google Account
       </Button>
-      <SignUpForm />
+      <div className="sign-in-container">
+        {/* <SignInForm /> */}
+        <SignUpForm />
+      </div>
     </div>
   );
 };
