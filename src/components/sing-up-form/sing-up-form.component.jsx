@@ -50,7 +50,6 @@ const SignUpForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
-    console.log(formFields);
   };
 
   return (
@@ -79,7 +78,7 @@ const SignUpForm = () => {
         <FormInput
           label="Password"
           type="password"
-          name="password" // zmiana nazwy atrybutu name
+          name="password"
           id="Password"
           required
           onChange={handleChange}
@@ -88,7 +87,7 @@ const SignUpForm = () => {
         <FormInput
           label="Confirm password"
           type="password"
-          name="confirmPassword" // zmiana nazwy atrybutu name
+          name="confirmPassword"
           id="Confirm password"
           required
           onChange={handleChange}
