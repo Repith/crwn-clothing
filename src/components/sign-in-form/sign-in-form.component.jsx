@@ -21,8 +21,7 @@ const SignInForm = () => {
   const { email, password } = formFields;
 
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   const resetFormFields = () => {
