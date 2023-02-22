@@ -25,31 +25,38 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
+//Initializing providers (Google in this application)
 const provider = new GoogleAuthProvider();
 
 provider.setCustomParameters({
   prompt: "select_account",
 });
 
+//Setting the authorisation, an sign in methods
 export const auth = getAuth();
 
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
+//Getting db from Firestore
 export const db = getFirestore();
 
+//Basic authentication pattern:
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformation
 ) => {
   if (!userAuth) return;
 
+  //creates a snapshot of the user in db and looks up for the user
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
 
+  //if snapshot doesn't matches the user
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
 
+    //setting the new user via setDoc in Firestore
     try {
       await setDoc(userDocRef, {
         displayName,
@@ -72,11 +79,11 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
 
 export const signInAuthWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
-
   return await signInWithEmailAndPassword(auth, email, password);
 };
 
-export const SignOutUser = () => signOut(auth);
+export const signOutUser = () => signOut(auth);
 
+//Authentication listner
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
