@@ -11,7 +11,14 @@ import {
 } from "firebase/auth";
 
 //getting doc and data from it via getDoc and setting it by setDoc
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAwBK6FA-l_dUhj_aHCbwZfU979fOs1qr0",
@@ -39,6 +46,24 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 //Getting db from Firestore
 export const db = getFirestore();
+
+//Creating a collection of objects in Firebase
+export const addCollectionAndDocument = async (
+  collectionKey,
+  objectsToAdd,
+  field
+) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object[field].toLowerCase());
+    batch.set(docRef, object);
+  });
+
+  await batch.commit();
+  console.log("done");
+};
 
 //Basic authentication pattern:
 export const createUserDocumentFromAuth = async (
