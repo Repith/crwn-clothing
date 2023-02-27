@@ -23,7 +23,6 @@ export const UserProvider = ({ children }) => {
         //handles both - new Google user and an user that already exists
       }
       setCurrentUser(user);
-      console.log(user);
     });
 
     return unsubscribe;

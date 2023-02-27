@@ -12,12 +12,14 @@ import {
 
 //getting doc and data from it via getDoc and setting it by setDoc
 import {
-  getFirestore,
   doc,
+  query,
   getDoc,
   setDoc,
+  getDocs,
   collection,
   writeBatch,
+  getFirestore,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -63,6 +65,20 @@ export const addCollectionAndDocument = async (
 
   await batch.commit();
   console.log("done");
+};
+
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "categories");
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+
+  return categoryMap;
 };
 
 //Basic authentication pattern:
