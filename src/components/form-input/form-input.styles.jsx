@@ -1,9 +1,9 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { css } from "styled-components";
 
 const subColor = "grey";
 const mainColor = "black";
 
-const shrinkLabelStyles = createGlobalStyle`
+const shrinkLabelStyles = css`
   top: -14px;
   font-size: 12px;
   color: ${mainColor};
@@ -33,7 +33,7 @@ export const Input = styled.input`
   width: 100%;
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid $sub-color;
+  border-bottom: 1px solid ${subColor};
   margin: 25px 0;
 
   &:focus {

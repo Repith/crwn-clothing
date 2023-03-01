@@ -5,7 +5,7 @@ import ProductCard from "../../components/product-card/product-card.component";
 
 import { CategoriesContext } from "../../contexts/categories.context";
 
-import "./category.styles.scss";
+import { Title, CategoryContainer } from "./category.styles";
 
 const Category = () => {
   const { category } = useParams();
@@ -19,14 +19,14 @@ const Category = () => {
   //rendering a component only if the acutal data is present
   return (
     <Fragment>
-      <h2 className="category-title">{category.toUpperCase()}</h2>
+      <Title>{category}</Title>
 
-      <div className="category-container">
+      <CategoryContainer>
         {products &&
           products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
-      </div>
+      </CategoryContainer>
     </Fragment>
   );
 };
