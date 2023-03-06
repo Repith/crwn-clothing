@@ -40,6 +40,7 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
 const clearCartItem = (cartItems, cartItemToClear) =>
   cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
 
+// Setting up cart context that includes initial values and those set by reducer
 export const CartContext = createContext({
   total: 0,
   cartCount: 0,
@@ -51,6 +52,7 @@ export const CartContext = createContext({
   removeItemFromCart: () => {},
 });
 
+//Setting up the reducer for the cart context
 const CART_ACTION_TYPES = {
   SET_CART_ITEMS: "SET_CART_ITEMS",
   SET_IS_CART_OPEN: "SET_IS_CART_OPEN",
@@ -83,6 +85,7 @@ const cartReducer = (state, action) => {
 };
 
 export const CartProvider = ({ children }) => {
+  //useReducer [state, payload]
   const [{ cartItems, cartCount, cartTotal, isCartOpen }, dispatch] =
     useReducer(cartReducer, INITIAL_STATE);
 
@@ -96,7 +99,7 @@ export const CartProvider = ({ children }) => {
       (total, cartItem) => total + cartItem.quantity * cartItem.price,
       0
     );
-    //using createAction to avoid writing type/payload
+    //using createAction from reducer.utils to avoid writing type/payload
     dispatch(
       createAction(CART_ACTION_TYPES.SET_CART_ITEMS, {
         cartItems: newCartItems,
@@ -106,6 +109,7 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  //functions for updateCartItems
   const addItemToCart = (productToAdd) => {
     const newCartItems = addCartItem(cartItems, productToAdd);
     updateCartItemsReducer(newCartItems);
