@@ -4,6 +4,7 @@ import {
   signOut,
   getAuth,
   signInWithPopup,
+  signInWithRedirect,
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
@@ -35,16 +36,19 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 
 //Initializing providers (Google in this application)
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
 
-provider.setCustomParameters({
+googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
 //Setting the authorisation, an sign in methods
 export const auth = getAuth();
 
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+export const signInWithGooglePopup = () =>
+  signInWithPopup(auth, googleProvider);
+export const signInWithGoogleRedirect = () =>
+  signInWithRedirect(auth, googleProvider);
 
 //Getting db from Firestore
 export const db = getFirestore();
@@ -118,7 +122,7 @@ export const createAuthUserWithEmailAndPassword = async (email, password) => {
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
-export const signInAuthWithEmailAndPassword = async (email, password) => {
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await signInWithEmailAndPassword(auth, email, password);
 };
