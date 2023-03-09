@@ -21,7 +21,6 @@ import {
   collection,
   writeBatch,
   getFirestore,
-  DocumentSnapshot,
 } from "firebase/firestore";
 
 const firebaseConfig = {

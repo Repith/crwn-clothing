@@ -42,7 +42,7 @@ const clearCartItem = (cartItems, cartItemToClear) =>
 
 // Setting up cart context that includes initial values and those set by reducer
 export const CartContext = createContext({
-  total: 0,
+  cartTotal: 0,
   cartCount: 0,
   cartItems: [],
   isCartOpen: false,
@@ -59,7 +59,7 @@ const CART_ACTION_TYPES = {
 };
 
 const INITIAL_STATE = {
-  total: 0,
+  cartTotal: 0,
   cartCount: 0,
   cartItems: [],
   isCartOpen: false,
@@ -103,7 +103,7 @@ export const CartProvider = ({ children }) => {
     dispatch(
       createAction(CART_ACTION_TYPES.SET_CART_ITEMS, {
         cartItems: newCartItems,
-        newCartTotal: newCartTotal,
+        cartTotal: newCartTotal,
         cartCount: newCartCount,
       })
     );
