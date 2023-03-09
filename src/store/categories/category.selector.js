@@ -24,4 +24,4 @@ export const selectCategoriesMap = createSelector(
     }, {})
 );
 
-//Changes made becouse reduce always returns a new object so it trggers rerender
+//Changes made because reduce always returns a new object so it triggers rerender
