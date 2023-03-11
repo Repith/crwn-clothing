@@ -25,3 +25,8 @@ export const selectCategoriesMap = createSelector(
 );
 
 //Changes made because reduce always returns a new object so it triggers rerender
+
+export const selectCategoriesIsLoading = createSelector(
+  [selectCategoryReducer],
+  (categoriesSlice) => categoriesSlice.isLoading
+);
