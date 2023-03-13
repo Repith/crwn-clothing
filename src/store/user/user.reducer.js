@@ -2,6 +2,8 @@ import { USER_ACTION_TYPES } from "./user.types";
 
 export const USER_INITIAL_STATE = {
   currentUser: null,
+  isLoading: false,
+  error: null,
 };
 //Setting state default to INITIAL_STATE for first time running
 //than reducers are gonna pass state.
@@ -11,12 +13,14 @@ export const userReducer = (state = USER_INITIAL_STATE, action = {}) => {
   const { type, payload } = action;
 
   switch (type) {
-    case USER_ACTION_TYPES.SET_CURRENT_USER:
+    case USER_ACTION_TYPES.SIGN_IN_SUCCESS:
       return { ...state, currentUser: payload };
     //Reducer returning state as an object - if it refers to the same memory allocation
     //the reducer does not need to update (so no need to re render).
     //Every reducer needs to return state by default if non of the cases
     //matches to the type.
+    case USER_ACTION_TYPES.SIGN_IN_FAILED:
+      return { ...state, error: payload };
     default:
       return state;
   }
