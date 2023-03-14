@@ -9,6 +9,7 @@ import {
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 
+//NEED TO RETHINK THE LOGIC OF THIS FUNCTION
 export function* getSnapshotFromUserAuth(userAuth, additionalDetails) {
   try {
     const userSnapshot = yield call(
@@ -21,7 +22,7 @@ export function* getSnapshotFromUserAuth(userAuth, additionalDetails) {
     yield put(signInFailed(error));
   }
 }
-
+//NEED TO RETHINK THE LOGIC OF THIS FUNCTION
 export function* isUserAuthenticated() {
   try {
     const userAuth = yield call(getCurrentUser);
@@ -31,7 +32,7 @@ export function* isUserAuthenticated() {
     yield put(signInFailed(error));
   }
 }
-
+//NEED TO RETHINK THE LOGIC OF THIS FUNCTION
 export function* onCheckUserSession() {
   yield takeLatest(USER_ACTION_TYPES.CHECK_USER_SESSION);
 }
