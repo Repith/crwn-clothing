@@ -125,3 +125,5 @@ export function* userSagas() {
     call(onSignOutStart),
   ]);
 }
+
+//Migrating to @ReduxTooltip
