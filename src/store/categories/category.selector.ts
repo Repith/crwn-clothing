@@ -1,10 +1,13 @@
 import { createSelector } from "reselect";
 
+import { RootState } from "../store";
+
 import { CategoriesState } from "./category.reducer";
 
 import { CategoryMap } from "./category.types";
 //Taking out the categories value from state
-const selectCategoryReducer = (state): CategoriesState => state.categories;
+const selectCategoryReducer = (state: RootState): CategoriesState =>
+  state.categories;
 
 //createSelector is a memoaized selector
 //Gets array of input selector [] - what I want from Redux to be used
