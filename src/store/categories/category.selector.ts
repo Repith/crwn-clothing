@@ -22,12 +22,16 @@ export const selectCategories = createSelector(
 //It doesn't rerun reduce method and just simply gives back the previous calculated value
 export const selectCategoriesMap = createSelector(
   [selectCategories],
-  (categories): CategoryMap =>
-    categories.reduce((acc, category) => {
+  (categories): CategoryMap => {
+    if (!categories) {
+      return {} as CategoryMap;
+    }
+    return Object.values(categories).reduce((acc, category) => {
       const { title, items } = category;
       acc[title.toLowerCase()] = items;
       return acc;
-    }, {} as CategoryMap)
+    }, {} as CategoryMap);
+  }
 );
 
 //Changes made because reduce always returns a new object so it triggers rerender

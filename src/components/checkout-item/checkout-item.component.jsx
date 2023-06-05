@@ -3,19 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems } from "../../store/cart/cart.selector";
 
 import {
-  clearItemFromCart,
   addItemToCart,
+  clearItemFromCart,
   removeItemFromCart,
 } from "../../store/cart/cart.action";
 
 import {
-  CheckoutItemContainer,
-  ImageContainer,
   Arrow,
-  RemoveButton,
-  ProductInfo,
-  Quantity,
   Value,
+  Quantity,
+  ProductInfo,
+  RemoveButton,
+  ImageContainer,
+  CheckoutItemContainer,
 } from "./checkout-item.styles";
 
 const CheckoutItem = ({ cartItem }) => {
