@@ -12,9 +12,16 @@ import {
 
 import { Title, CategoryContainer } from "./category.styles";
 
+type CategoryRouteParams = {
+  category: string;
+};
+
 const Category = () => {
-  //Taking a category name from URL parameters
-  const { category } = useParams();
+  //Taking a category name from URL parameters (renders only if category is inside URL)
+  //making is only as a keyof those params, but needs them to be as intended
+  const { category } = useParams<
+    keyof CategoryRouteParams
+  >() as CategoryRouteParams;
   //Pulling category map from selector that transforms the category array
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectCategoriesIsLoading);
@@ -25,7 +32,7 @@ const Category = () => {
     setProducts(categoriesMap[category]);
   }, [category, categoriesMap]);
 
-  //rendering a component only if the acutal data is present
+  //rendering a component only if the actual data is present
   return (
     <Fragment>
       <Title>{category}</Title>
