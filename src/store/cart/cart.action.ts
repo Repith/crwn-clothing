@@ -1,7 +1,6 @@
 import {
   createAction,
   withMatcher,
-  Action,
   ActionWithPayload,
 } from "../../utils/reducer/reducer.utils";
 import { CART_ACTION_TYPES, CartItem } from "./cart.types";
@@ -9,7 +8,7 @@ import { CategoryItem } from "../categories/category.types";
 
 const addCartItem = (
   cartItems: CartItem[],
-  productToAdd: CartItem
+  productToAdd: CategoryItem
 ): CartItem[] => {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === productToAdd.id
@@ -76,7 +75,7 @@ export const setIsCartOpen = withMatcher(
 
 export const addItemToCart = (
   cartItems: CartItem[],
-  productToAdd: CartItem
+  productToAdd: CategoryItem
 ) => {
   const newCartItems = addCartItem(cartItems, productToAdd);
   return setCartItems(newCartItems);

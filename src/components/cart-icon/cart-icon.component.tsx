@@ -6,11 +6,7 @@ import {
 } from "../../store/cart/cart.selector";
 import { setIsCartOpen } from "../../store/cart/cart.action";
 
-import {
-  ShoppingIcon,
-  CartIconContainer,
-  ItemCount,
-} from "./cart-icon.styles.js";
+import { ShoppingIcon, CartIconContainer, ItemCount } from "./cart-icon.styles";
 
 const CartIcon = () => {
   const dispatch = useDispatch();

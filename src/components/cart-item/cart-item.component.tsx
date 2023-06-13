@@ -1,22 +1,26 @@
-import { ItemDetails, CartItemContainer } from "./cart-item.styles";
+import { FC } from "react";
+
+import { CartItemContainer, ItemDetails } from "./cart-item.styles";
+
+import { CartItem as TCartItem } from "../../store/cart/cart.types";
 
 type CartItemProps = {
-  name: string;
-  quantity: number;
-  imageUrl: string;
-  price: string;
+  cartItem: TCartItem;
 };
 
-const CartItem = ({ name, quantity, imageUrl, price }: CartItemProps) => (
-  <CartItemContainer>
-    <img src={imageUrl} alt={`${name}`} />
-    <ItemDetails>
-      <span className="name">{name}</span>
-      <span>
-        {quantity} x {price}$
-      </span>
-    </ItemDetails>
-  </CartItemContainer>
-);
+const CartItem: FC<CartItemProps> = ({ cartItem }) => {
+  const { name, imageUrl, price, quantity } = cartItem;
+  return (
+    <CartItemContainer>
+      <img src={imageUrl} alt={`${name}`} />
+      <ItemDetails>
+        <span>{name}</span>
+        <span>
+          {quantity} x ${price}
+        </span>
+      </ItemDetails>
+    </CartItemContainer>
+  );
+};
 
 export default CartItem;

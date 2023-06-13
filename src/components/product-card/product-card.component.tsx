@@ -1,20 +1,25 @@
+import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addItemToCart } from "../../store/cart/cart.action";
 import { selectCartItems } from "../../store/cart/cart.selector";
+import { addItemToCart } from "../../store/cart/cart.action";
+import { CategoryItem } from "../../store/categories/category.types";
 
 import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 import {
+  ProductCardContainer,
+  Footer,
   Name,
   Price,
-  Footer,
-  ProductCardContainer,
 } from "./product-card.styles";
 
-const ProductCard = ({ product }) => {
-  const { name, price, imageUrl } = product;
+type ProductCardProps = {
+  product: CategoryItem;
+};
 
+const ProductCard: FC<ProductCardProps> = ({ product }) => {
+  const { name, price, imageUrl } = product;
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems);
 
@@ -31,7 +36,7 @@ const ProductCard = ({ product }) => {
         buttonType={BUTTON_TYPE_CLASSES.inverted}
         onClick={addProductToCart}
       >
-        Add to cart
+        Add to card
       </Button>
     </ProductCardContainer>
   );
