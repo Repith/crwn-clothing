@@ -15,6 +15,8 @@ const Navigation = lazy(() =>
 const Shop = lazy(() => import("./routes/shop/shop.component"));
 const Checkout = lazy(() => import("./routes/checkout/checkout.component"));
 
+//migration to PWA
+
 const App = () => {
   const dispatch = useDispatch();
 
